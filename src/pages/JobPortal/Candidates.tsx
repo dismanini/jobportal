@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 const candidatesData = [
   {
@@ -53,12 +53,12 @@ const candidatesData = [
   },
 ];
 
-const statusStyles = {
-  New: "bg-blue-50 text-blue-600",
-  Shortlisted: "bg-orange-50 text-[#d9692f]",
-  Interview: "bg-yellow-50 text-yellow-700",
-  Hired: "bg-green-50 text-green-600",
-  Rejected: "bg-red-50 text-red-600",
+const statusStyles: Record<string, string> = {
+  New: "...",
+  Shortlisted: "...",
+  Interview: "...",
+  Hired: "...",
+  Rejected: "...",
 };
 
 function Candidates() {
@@ -416,7 +416,7 @@ function Candidates() {
                 <tr>
 
                   <td
-                    colSpan="6"
+                    colSpan={6}
                     className="px-5 py-12 text-center"
                   >
 

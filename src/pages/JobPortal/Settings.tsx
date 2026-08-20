@@ -1,9 +1,43 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import type { ChangeEvent } from "react";
+
+type Profile = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  jobTitle: string;
+  company: string;
+};
+
+type NotificationSettings = {
+  newApplications: boolean;
+  interviewReminders: boolean;
+  messages: boolean;
+  jobAlerts: boolean;
+  emailNotifications: boolean;
+};
+
+type NotificationKey = keyof NotificationSettings;
+
+type Preferences = {
+  language: string;
+  timezone: string;
+  dateFormat: string;
+};
+
+type SettingsTab =
+  | "Profile"
+  | "Account"
+  | "Notifications"
+  | "Security"
+  | "Preferences";
 
 function Settings() {
-  const [activeTab, setActiveTab] = useState("Profile");
+  const [activeTab, setActiveTab] =
+    useState<SettingsTab>("Profile");
 
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<Profile>({
     firstName: "Admin",
     lastName: "User",
     email: "admin@yourcompany.com",
@@ -12,27 +46,33 @@ function Settings() {
     company: "Your Company",
   });
 
-  const [notifications, setNotifications] = useState({
-    newApplications: true,
-    interviewReminders: true,
-    messages: true,
-    jobAlerts: false,
-    emailNotifications: true,
-  });
+  const [notifications, setNotifications] =
+    useState<NotificationSettings>({
+      newApplications: true,
+      interviewReminders: true,
+      messages: true,
+      jobAlerts: false,
+      emailNotifications: true,
+    });
 
-  const [preferences, setPreferences] = useState({
-    language: "English",
-    timezone: "India Standard Time (IST)",
-    dateFormat: "DD/MM/YYYY",
-  });
+  const [preferences, setPreferences] =
+    useState<Preferences>({
+      language: "English",
+      timezone: "India Standard Time (IST)",
+      dateFormat: "DD/MM/YYYY",
+    });
 
   const [saved, setSaved] = useState(false);
 
-  const handleProfileChange = (e) => {
-    setProfile({
-      ...profile,
-      [e.target.name]: e.target.value,
-    });
+  const handleProfileChange = (
+    e: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { name, value } = e.target;
+
+    setProfile((current) => ({
+      ...current,
+      [name]: value,
+    }));
   };
 
   const handleSave = () => {
@@ -43,30 +83,93 @@ function Settings() {
     }, 2500);
   };
 
-  const toggleNotification = (name) => {
-    setNotifications({
-      ...notifications,
-      [name]: !notifications[name],
-    });
+  const toggleNotification = (
+    name: NotificationKey,
+  ) => {
+    setNotifications((current) => ({
+      ...current,
+      [name]: !current[name],
+    }));
   };
+
+  const tabs: {
+    name: SettingsTab;
+    icon: string;
+  }[] = [
+    {
+      name: "Profile",
+      icon: "👤",
+    },
+    {
+      name: "Account",
+      icon: "⚙",
+    },
+    {
+      name: "Notifications",
+      icon: "🔔",
+    },
+    {
+      name: "Security",
+      icon: "🔒",
+    },
+    {
+      name: "Preferences",
+      icon: "🌐",
+    },
+  ];
+
+  const notificationItems: {
+    key: NotificationKey;
+    title: string;
+    description: string;
+  }[] = [
+    {
+      key: "newApplications",
+      title: "New Applications",
+      description:
+        "Get notified when a candidate applies for a job.",
+    },
+    {
+      key: "interviewReminders",
+      title: "Interview Reminders",
+      description:
+        "Receive reminders about upcoming interviews.",
+    },
+    {
+      key: "messages",
+      title: "New Messages",
+      description:
+        "Get notified when candidates send you messages.",
+    },
+    {
+      key: "jobAlerts",
+      title: "Job Alerts",
+      description:
+        "Receive updates about your job postings.",
+    },
+    {
+      key: "emailNotifications",
+      title: "Email Notifications",
+      description:
+        "Receive important updates through email.",
+    },
+  ];
 
   return (
     <div className="w-full min-w-0 bg-[#f7f3ef] p-4 sm:p-6 lg:p-8">
-
       {/* =====================================================
           PAGE HEADER
       ====================================================== */}
 
       <div className="mb-6">
-
         <h1 className="text-2xl font-bold text-[#030303] sm:text-3xl">
           Settings
         </h1>
 
         <p className="mt-1 text-sm text-gray-500">
-          Manage your account, preferences and notification settings
+          Manage your account, preferences and notification
+          settings
         </p>
-
       </div>
 
       {/* =====================================================
@@ -74,38 +177,13 @@ function Settings() {
       ====================================================== */}
 
       <div className="flex w-full min-w-0 flex-col gap-6 lg:flex-row">
-
         {/* =================================================
             SETTINGS SIDEBAR
         ================================================== */}
 
         <div className="w-full shrink-0 lg:w-64">
-
           <div className="rounded-xl border border-gray-100 bg-white p-3 shadow-sm">
-
-            {[
-              {
-                name: "Profile",
-                icon: "👤",
-              },
-              {
-                name: "Account",
-                icon: "⚙",
-              },
-              {
-                name: "Notifications",
-                icon: "🔔",
-              },
-              {
-                name: "Security",
-                icon: "🔒",
-              },
-              {
-                name: "Preferences",
-                icon: "🌐",
-              },
-            ].map((item) => (
-
+            {tabs.map((item) => (
               <button
                 key={item.name}
                 onClick={() => setActiveTab(item.name)}
@@ -129,21 +207,14 @@ function Settings() {
                   }
                 `}
               >
-
                 <span className="text-base">
                   {item.icon}
                 </span>
 
-                <span>
-                  {item.name}
-                </span>
-
+                <span>{item.name}</span>
               </button>
-
             ))}
-
           </div>
-
         </div>
 
         {/* =================================================
@@ -151,21 +222,16 @@ function Settings() {
         ================================================== */}
 
         <div className="min-w-0 flex-1">
-
           {/* =================================================
               PROFILE
           ================================================== */}
 
           {activeTab === "Profile" && (
-
             <div className="space-y-6">
-
               {/* Profile Header */}
 
               <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
                 <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-
                   {/* Profile Image */}
 
                   <div
@@ -187,7 +253,6 @@ function Settings() {
                   </div>
 
                   <div className="min-w-0">
-
                     <h2 className="text-lg font-semibold text-[#030303]">
                       Profile Information
                     </h2>
@@ -197,6 +262,7 @@ function Settings() {
                     </p>
 
                     <button
+                      type="button"
                       className="
                         mt-3
                         rounded-lg
@@ -212,27 +278,21 @@ function Settings() {
                     >
                       Change Photo
                     </button>
-
                   </div>
-
                 </div>
-
               </div>
 
               {/* Profile Form */}
 
               <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
                 <h2 className="mb-5 text-lg font-semibold text-[#030303]">
                   Personal Details
                 </h2>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
                   {/* First Name */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       First Name
                     </label>
@@ -256,13 +316,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
                   {/* Last Name */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Last Name
                     </label>
@@ -286,13 +344,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
                   {/* Email */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Email Address
                     </label>
@@ -316,13 +372,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
                   {/* Phone */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Phone Number
                     </label>
@@ -346,13 +400,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
                   {/* Job Title */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Job Title
                     </label>
@@ -376,13 +428,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
                   {/* Company */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Company
                     </label>
@@ -406,14 +456,12 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
-
                 </div>
 
                 <div className="mt-6 flex justify-end">
-
                   <button
+                    type="button"
                     onClick={handleSave}
                     className="
                       rounded-lg
@@ -429,13 +477,9 @@ function Settings() {
                   >
                     Save Changes
                   </button>
-
                 </div>
-
               </div>
-
             </div>
-
           )}
 
           {/* =================================================
@@ -443,11 +487,8 @@ function Settings() {
           ================================================== */}
 
           {activeTab === "Account" && (
-
             <div className="space-y-6">
-
               <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
                 <h2 className="text-lg font-semibold text-[#030303]">
                   Account Settings
                 </h2>
@@ -457,9 +498,9 @@ function Settings() {
                 </p>
 
                 <div className="mt-6 space-y-5">
+                  {/* Account Email */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Account Email
                     </label>
@@ -480,19 +521,17 @@ function Settings() {
                         text-gray-500
                       "
                     />
-
                   </div>
 
-                  <div>
+                  {/* Account Type */}
 
+                  <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Account Type
                     </label>
 
                     <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4">
-
                       <div>
-
                         <p className="text-sm font-semibold text-[#030303]">
                           Company Account
                         </p>
@@ -500,34 +539,30 @@ function Settings() {
                         <p className="mt-1 text-xs text-gray-500">
                           Recruitment & Staffing
                         </p>
-
                       </div>
 
                       <span className="rounded-full bg-[#fff0e7] px-3 py-1 text-xs font-semibold text-[#d9692f]">
                         Active
                       </span>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
 
               {/* Delete Account */}
 
               <div className="rounded-xl border border-red-100 bg-white p-5 shadow-sm sm:p-6">
-
                 <h2 className="text-lg font-semibold text-red-600">
                   Danger Zone
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-500">
-                  Permanently delete your account and all associated data.
+                  Permanently delete your account and all
+                  associated data.
                 </p>
 
                 <button
+                  type="button"
                   className="
                     mt-5
                     rounded-lg
@@ -543,11 +578,8 @@ function Settings() {
                 >
                   Delete Account
                 </button>
-
               </div>
-
             </div>
-
           )}
 
           {/* =================================================
@@ -555,9 +587,7 @@ function Settings() {
           ================================================== */}
 
           {activeTab === "Notifications" && (
-
             <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
               <h2 className="text-lg font-semibold text-[#030303]">
                 Notification Settings
               </h2>
@@ -567,47 +597,12 @@ function Settings() {
               </p>
 
               <div className="mt-6 divide-y divide-gray-100">
-
-                {[
-                  {
-                    key: "newApplications",
-                    title: "New Applications",
-                    description:
-                      "Get notified when a candidate applies for a job.",
-                  },
-                  {
-                    key: "interviewReminders",
-                    title: "Interview Reminders",
-                    description:
-                      "Receive reminders about upcoming interviews.",
-                  },
-                  {
-                    key: "messages",
-                    title: "New Messages",
-                    description:
-                      "Get notified when candidates send you messages.",
-                  },
-                  {
-                    key: "jobAlerts",
-                    title: "Job Alerts",
-                    description:
-                      "Receive updates about your job postings.",
-                  },
-                  {
-                    key: "emailNotifications",
-                    title: "Email Notifications",
-                    description:
-                      "Receive important updates through email.",
-                  },
-                ].map((item) => (
-
+                {notificationItems.map((item) => (
                   <div
                     key={item.key}
                     className="flex items-center justify-between gap-4 py-5"
                   >
-
                     <div className="min-w-0">
-
                       <h3 className="text-sm font-semibold text-[#030303]">
                         {item.title}
                       </h3>
@@ -615,13 +610,14 @@ function Settings() {
                       <p className="mt-1 text-xs leading-5 text-gray-500">
                         {item.description}
                       </p>
-
                     </div>
 
                     <button
+                      type="button"
                       onClick={() =>
                         toggleNotification(item.key)
                       }
+                      aria-label={`Toggle ${item.title}`}
                       className={`
                         relative
                         h-6
@@ -636,7 +632,6 @@ function Settings() {
                         }
                       `}
                     >
-
                       <span
                         className={`
                           absolute
@@ -654,17 +649,11 @@ function Settings() {
                           }
                         `}
                       />
-
                     </button>
-
                   </div>
-
                 ))}
-
               </div>
-
             </div>
-
           )}
 
           {/* =================================================
@@ -672,11 +661,8 @@ function Settings() {
           ================================================== */}
 
           {activeTab === "Security" && (
-
             <div className="space-y-6">
-
               <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
                 <h2 className="text-lg font-semibold text-[#030303]">
                   Change Password
                 </h2>
@@ -686,9 +672,9 @@ function Settings() {
                 </p>
 
                 <div className="mt-6 space-y-5">
+                  {/* Current Password */}
 
                   <div>
-
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Current Password
                     </label>
@@ -710,11 +696,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
-                  <div>
+                  {/* New Password */}
 
+                  <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       New Password
                     </label>
@@ -736,11 +722,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
 
-                  <div>
+                  {/* Confirm Password */}
 
+                  <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       Confirm Password
                     </label>
@@ -762,12 +748,11 @@ function Settings() {
                         focus:ring-[#d9692f]
                       "
                     />
-
                   </div>
-
                 </div>
 
                 <button
+                  type="button"
                   onClick={handleSave}
                   className="
                     mt-6
@@ -783,34 +768,30 @@ function Settings() {
                 >
                   Update Password
                 </button>
-
               </div>
 
               {/* Two Factor */}
 
               <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
                 <div className="flex items-center justify-between gap-4">
-
                   <div>
-
                     <h2 className="text-lg font-semibold text-[#030303]">
                       Two-Factor Authentication
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-500">
-                      Add an extra layer of security to your account.
+                      Add an extra layer of security to your
+                      account.
                     </p>
-
                   </div>
 
                   <span className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-semibold text-gray-500">
                     Disabled
                   </span>
-
                 </div>
 
                 <button
+                  type="button"
                   className="
                     mt-5
                     rounded-lg
@@ -826,11 +807,8 @@ function Settings() {
                 >
                   Enable 2FA
                 </button>
-
               </div>
-
             </div>
-
           )}
 
           {/* =================================================
@@ -838,9 +816,7 @@ function Settings() {
           ================================================== */}
 
           {activeTab === "Preferences" && (
-
             <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
-
               <h2 className="text-lg font-semibold text-[#030303]">
                 Preferences
               </h2>
@@ -850,11 +826,9 @@ function Settings() {
               </p>
 
               <div className="mt-6 space-y-5">
-
                 {/* Language */}
 
                 <div>
-
                   <label className="mb-2 block text-sm font-medium text-gray-700">
                     Language
                   </label>
@@ -862,10 +836,10 @@ function Settings() {
                   <select
                     value={preferences.language}
                     onChange={(e) =>
-                      setPreferences({
-                        ...preferences,
+                      setPreferences((current) => ({
+                        ...current,
                         language: e.target.value,
-                      })
+                      }))
                     }
                     className="
                       w-full
@@ -886,13 +860,11 @@ function Settings() {
                     <option>Hindi</option>
                     <option>Odia</option>
                   </select>
-
                 </div>
 
                 {/* Timezone */}
 
                 <div>
-
                   <label className="mb-2 block text-sm font-medium text-gray-700">
                     Timezone
                   </label>
@@ -900,10 +872,10 @@ function Settings() {
                   <select
                     value={preferences.timezone}
                     onChange={(e) =>
-                      setPreferences({
-                        ...preferences,
+                      setPreferences((current) => ({
+                        ...current,
                         timezone: e.target.value,
-                      })
+                      }))
                     }
                     className="
                       w-full
@@ -933,13 +905,11 @@ function Settings() {
                       Greenwich Mean Time (GMT)
                     </option>
                   </select>
-
                 </div>
 
                 {/* Date Format */}
 
                 <div>
-
                   <label className="mb-2 block text-sm font-medium text-gray-700">
                     Date Format
                   </label>
@@ -947,10 +917,10 @@ function Settings() {
                   <select
                     value={preferences.dateFormat}
                     onChange={(e) =>
-                      setPreferences({
-                        ...preferences,
+                      setPreferences((current) => ({
+                        ...current,
                         dateFormat: e.target.value,
-                      })
+                      }))
                     }
                     className="
                       w-full
@@ -971,12 +941,11 @@ function Settings() {
                     <option>MM/DD/YYYY</option>
                     <option>YYYY-MM-DD</option>
                   </select>
-
                 </div>
-
               </div>
 
               <button
+                type="button"
                 onClick={handleSave}
                 className="
                   mt-6
@@ -993,13 +962,9 @@ function Settings() {
               >
                 Save Preferences
               </button>
-
             </div>
-
           )}
-
         </div>
-
       </div>
 
       {/* =====================================================
@@ -1007,7 +972,6 @@ function Settings() {
       ====================================================== */}
 
       {saved && (
-
         <div
           className="
             fixed
@@ -1027,17 +991,11 @@ function Settings() {
             shadow-xl
           "
         >
-
-          <span className="text-green-400">
-            ✓
-          </span>
+          <span className="text-green-400">✓</span>
 
           Settings saved successfully
-
         </div>
-
       )}
-
     </div>
   );
 }

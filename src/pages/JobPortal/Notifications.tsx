@@ -1,6 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const initialNotifications = [
+type NotificationType =
+  | "application"
+  | "interview"
+  | "candidate"
+  | "system"
+  | "job";
+
+type Notification = {
+  id: number;
+  type: NotificationType;
+  title: string;
+  message: string;
+  time: string;
+  date: string;
+  unread: boolean;
+};
+
+type FilterType = "All" | "Unread" | "Read";
+
+const initialNotifications: Notification[] = [
   {
     id: 1,
     type: "application",
@@ -67,7 +86,14 @@ const initialNotifications = [
   },
 ];
 
-const notificationStyles = {
+const notificationStyles: Record<
+  NotificationType,
+  {
+    icon: string;
+    bg: string;
+    text: string;
+  }
+> = {
   application: {
     icon: "📄",
     bg: "bg-blue-50",
@@ -96,9 +122,10 @@ const notificationStyles = {
 };
 
 function Notifications() {
-  const [notifications, setNotifications] = useState(initialNotifications);
+  const [notifications, setNotifications] =
+    useState<Notification[]>(initialNotifications);
 
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState<FilterType>("All");
 
   const unreadCount = notifications.filter(
     (notification) => notification.unread,
@@ -116,7 +143,7 @@ function Notifications() {
     return true;
   });
 
-  const markAsRead = (id) => {
+  const markAsRead = (id: number) => {
     setNotifications((current) =>
       current.map((notification) =>
         notification.id === id
@@ -135,7 +162,7 @@ function Notifications() {
     );
   };
 
-  const deleteNotification = (id) => {
+  const deleteNotification = (id: number) => {
     setNotifications((current) =>
       current.filter((notification) => notification.id !== id),
     );
@@ -147,9 +174,7 @@ function Notifications() {
 
   return (
     <div className="w-full min-w-0 bg-[#f7f3ef] p-4 sm:p-6 lg:p-8">
-      {/* =====================================================
-          HEADER
-      ====================================================== */}
+      {/* HEADER */}
 
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
@@ -165,18 +190,14 @@ function Notifications() {
         {unreadCount > 0 && (
           <button
             onClick={markAllAsRead}
-            className=" w-full rounded-lg border border-[#d9692f]
-              bg-white px-5 py-3 text-sm font-semibold text-[#d9692f] transition
-              hover:bg-[#fff7f2] sm:w-auto "
+            className="w-full rounded-lg border border-[#d9692f] bg-white px-5 py-3 text-sm font-semibold text-[#d9692f] transition hover:bg-[#fff7f2] sm:w-auto"
           >
             Mark All as Read
           </button>
         )}
       </div>
 
-      {/* =====================================================
-          SUMMARY CARDS
-      ====================================================== */}
+      {/* SUMMARY CARDS */}
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {/* Total */}
@@ -191,9 +212,7 @@ function Notifications() {
               </h2>
             </div>
 
-            <div
-              className=" flex h-11 w-11 items-center justify-center rounded-xl
-                bg-[#fff0e7] text-xl " >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff0e7] text-xl">
               🔔
             </div>
           </div>
@@ -211,9 +230,7 @@ function Notifications() {
               </h2>
             </div>
 
-            <div
-              className=" flex h-11 w-11 items-center justify-center rounded-xl
-                bg-[#fff0e7] text-xl " >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff0e7] text-xl">
               ●
             </div>
           </div>
@@ -231,18 +248,14 @@ function Notifications() {
               </h2>
             </div>
 
-            <div
-              className=" flex h-11 w-11 items-center justify-center rounded-xl
-                bg-green-50 text-xl " >
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-xl">
               ✓
             </div>
           </div>
         </div>
       </div>
 
-      {/* =====================================================
-          NOTIFICATION CARD
-      ====================================================== */}
+      {/* NOTIFICATION CARD */}
 
       <div className="w-full min-w-0 overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
         {/* Toolbar */}
@@ -261,18 +274,15 @@ function Notifications() {
           {/* Filters */}
 
           <div className="flex flex-wrap gap-2">
-            {["All", "Unread", "Read"].map((item) => (
+            {(["All", "Unread", "Read"] as FilterType[]).map((item) => (
               <button
                 key={item}
                 onClick={() => setFilter(item)}
-                className={` rounded-lg px-4 py-2 text-sm font-medium
-                  transition
-                  ${
-                    filter === item
-                      ? "bg-[#d9692f] text-white"
-                      : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
-                  }
-                `}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
+                  filter === item
+                    ? "bg-[#d9692f] text-white"
+                    : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+                }`}
               >
                 {item}
               </button>
@@ -280,9 +290,7 @@ function Notifications() {
           </div>
         </div>
 
-        {/* =================================================
-            NOTIFICATION LIST
-        ================================================== */}
+        {/* NOTIFICATION LIST */}
 
         {filteredNotifications.length > 0 ? (
           <div className="divide-y divide-gray-100">
@@ -292,25 +300,20 @@ function Notifications() {
               return (
                 <div
                   key={notification.id}
-                  className={` relative flex gap-4 p-5 transition hover:bg-[#fffaf7] sm:p-6
-                    ${notification.unread ? "bg-[#fffaf7]" : "bg-white"}
-                  `}
+                  className={`relative flex gap-4 p-5 transition hover:bg-[#fffaf7] sm:p-6 ${
+                    notification.unread ? "bg-[#fffaf7]" : "bg-white"
+                  }`}
                 >
                   {/* Unread Indicator */}
 
                   {notification.unread && (
-                    <span
-                      className="absolute left-0 top-0 h-full w-1 bg-[#d9692f]"
-                    />
+                    <span className="absolute left-0 top-0 h-full w-1 bg-[#d9692f]" />
                   )}
 
                   {/* Icon */}
 
                   <div
-                    className={` flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl
-                      ${style.bg}
-                      ${style.text}
-                    `}
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl ${style.bg} ${style.text}`}
                   >
                     {style.icon}
                   </div>
@@ -322,22 +325,17 @@ function Notifications() {
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
                           <h3
-                            className={`
-                              truncate
-                              text-sm
-                              ${
-                                notification.unread
-                                  ? "font-bold text-[#030303]"
-                                  : "font-semibold text-gray-700"
-                              }
-                            `}
+                            className={`truncate text-sm ${
+                              notification.unread
+                                ? "font-bold text-[#030303]"
+                                : "font-semibold text-gray-700"
+                            }`}
                           >
                             {notification.title}
                           </h3>
 
                           {notification.unread && (
-                            <span
-                              className="h-2 w-2 shrink-0 rounded-full bg-[#d9692f] " />
+                            <span className="h-2 w-2 shrink-0 rounded-full bg-[#d9692f]" />
                           )}
                         </div>
 
@@ -357,14 +355,16 @@ function Notifications() {
                       {notification.unread && (
                         <button
                           onClick={() => markAsRead(notification.id)}
-                          className="text-xs font-semibold text-[#d9692f] hover:underline " >
+                          className="text-xs font-semibold text-[#d9692f] hover:underline"
+                        >
                           Mark as read
                         </button>
                       )}
 
                       <button
                         onClick={() => deleteNotification(notification.id)}
-                        className="text-xs font-medium text-gray-400 hover:text-red-500 " >
+                        className="text-xs font-medium text-gray-400 hover:text-red-500"
+                      >
                         Delete
                       </button>
                     </div>
@@ -374,14 +374,10 @@ function Notifications() {
             })}
           </div>
         ) : (
-          /* =================================================
-              EMPTY STATE
-          ================================================== */
+          /* EMPTY STATE */
 
           <div className="px-5 py-16 text-center">
-            <div
-              className="mx-auto flex h-16 w-16 items-center justify-center rounded-full
-                bg-[#fff0e7] text-2xl " >
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#fff0e7] text-2xl">
               🔔
             </div>
 
@@ -395,9 +391,7 @@ function Notifications() {
           </div>
         )}
 
-        {/* =================================================
-            FOOTER
-        ================================================== */}
+        {/* FOOTER */}
 
         {notifications.length > 0 && (
           <div className="flex flex-col gap-3 border-t border-gray-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
@@ -411,8 +405,8 @@ function Notifications() {
 
             <button
               onClick={clearAllNotifications}
-              className="w-full rounded-lg border border-red-100 px-4 py-2 text-sm font-medium
-                text-red-500 transition hover:bg-red-50 sm:w-auto ">
+              className="w-full rounded-lg border border-red-100 px-4 py-2 text-sm font-medium text-red-500 transition hover:bg-red-50 sm:w-auto"
+            >
               Clear All
             </button>
           </div>

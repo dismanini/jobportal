@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const interviewsData = [
   {
@@ -63,11 +63,11 @@ const interviewsData = [
   },
 ];
 
-const statusStyles = {
-  Scheduled: "bg-orange-50 text-[#d9692f]",
-  Pending: "bg-yellow-50 text-yellow-700",
-  Completed: "bg-green-50 text-green-600",
-  Cancelled: "bg-red-50 text-red-600",
+const statusStyles: Record<string, string> = {
+  Scheduled: "...",
+  Pending: "...",
+  Completed: "...",
+  Cancelled: "...",
 };
 
 function Interviews() {
@@ -432,7 +432,7 @@ function Interviews() {
                 <tr>
 
                   <td
-                    colSpan="7"
+                    colSpan={7}
                     className="px-5 py-12 text-center"
                   >
 

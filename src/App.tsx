@@ -17,7 +17,7 @@ import FormElements from "./pages/Forms/FormElements";
 import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
-import Home from "./pages/Dashboard/Home";
+// import Home from "./pages/Dashboard/Home";
 import JobSeekerDashboard from "./pages/JobPortal/JobSeekerDashboard";
 import FindJobs from "./pages/JobPortal/FindJobs";
 import JobDetails from "./pages/JobPortal/JobDetails";
@@ -29,13 +29,13 @@ import ManageJobs from "./pages/JobPortal/ManageJobs";
 import EditJob from "./pages/JobPortal/EditJob";
 import Applications from "./pages/JobPortal/Applications";
 import MyResume from "./pages/JobPortal/MyResume";
-import Interview from "./pages/Jobportal/Interviews";
-import Candidates from "./pages/Jobportal/Candidates";
-import CompanyProfile from "./pages/Jobportal/CompanyProfile";
-import Messages from "./pages/Jobportal/Messages";
+import Interview from "./pages/JobPortal/Interviews";
+import Candidates from "./pages/JobPortal/Candidates";
+import CompanyProfile from "./pages/JobPortal/CompanyProfile";
+import Messages from "./pages/JobPortal/Messages";
 
-import Notifications from "./pages/Jobportal/Notifications";
-import Settings from "./pages/Jobportal/Settings";
+import Notifications from "./pages/JobPortal/Notifications";
+import Settings from "./pages/JobPortal/Settings";
 export default function App() {
   return (
     <>

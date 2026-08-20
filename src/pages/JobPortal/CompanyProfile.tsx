@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 
 function CompanyProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -16,13 +16,18 @@ function CompanyProfile() {
       "We are a professional recruitment and staffing company helping organizations find the right talent and helping job seekers build successful careers.",
   });
 
-  const handleChange = (e) => {
-    setCompany({
-      ...company,
-      [e.target.name]: e.target.value,
-    });
-  };
+ const handleChange = (
+  e: ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+) => {
+  setCompany({
+    ...company,
+    [e.target.name]: e.target.value,
+  });
+};
 
+  
   const handleSave = () => {
     setIsEditing(false);
   };
@@ -416,7 +421,7 @@ function CompanyProfile() {
               name="description"
               value={company.description}
               onChange={handleChange}
-              rows="5"
+              rows={5}
               className="
                 w-full
                 resize-none

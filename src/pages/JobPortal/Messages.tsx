@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const messagesData = [
   {
@@ -535,7 +535,7 @@ function Messages() {
               </button>
 
               <textarea
-                rows="1"
+                rows={1}
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyDown={(e) => {

@@ -18,7 +18,24 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
+import JobSeekerDashboard from "./pages/JobPortal/JobSeekerDashboard";
+import FindJobs from "./pages/JobPortal/FindJobs";
+import JobDetails from "./pages/JobPortal/JobDetails";
+import ApplyJob from "./pages/JobPortal/ApplyJob";
+import AppliedJobs from "./pages/JobPortal/AppliedJobs";
+import SavedJobs from "./pages/JobPortal/SavedJobs";
+import PostJob from "./pages/JobPortal/PostJob";
+import ManageJobs from "./pages/JobPortal/ManageJobs";
+import EditJob from "./pages/JobPortal/EditJob";
+import Applications from "./pages/JobPortal/Applications";
+import MyResume from "./pages/JobPortal/MyResume";
+import Interview from "./pages/Jobportal/Interviews";
+import Candidates from "./pages/Jobportal/Candidates";
+import CompanyProfile from "./pages/Jobportal/CompanyProfile";
+import Messages from "./pages/Jobportal/Messages";
 
+import Notifications from "./pages/Jobportal/Notifications";
+import Settings from "./pages/Jobportal/Settings";
 export default function App() {
   return (
     <>
@@ -27,12 +44,34 @@ export default function App() {
         <Routes>
           {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
-            <Route index path="/" element={<Home />} />
+            <Route index path="/" element={<JobSeekerDashboard />} />
+            
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} />
+            <Route path="/find-jobs" element={<FindJobs />} />
+            <Route path="/job-details/:id" element={<JobDetails />} />
+            <Route path="/apply-job/:id" element={<ApplyJob />} />
+            <Route path="/applied-jobs" element={<AppliedJobs />} />
+            <Route path="/saved-jobs" element={<SavedJobs />} />
+            <Route path="/post-job" element={<PostJob />} />
+            <Route path="/manage-jobs" element={<ManageJobs />} />
+            <Route path="/edit-job/:id" element={<EditJob />} />
+            <Route path="/applications" element={<Applications />} />
+            <Route path="/my-resume" element={<MyResume />} />
+            <Route path="/job-seeker" element={<JobSeekerDashboard />} />
+            <Route path="/interviews" element={<Interview />} />
+            <Route path="/candidates"  element={<Candidates />} />
+            <Route path="/company-profile" element={<CompanyProfile />} />
+            <Route path="/messages" element={<Messages />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/settings" element={<Settings />} />
+
+
+
+
 
             {/* Forms */}
             <Route path="/form-elements" element={<FormElements />} />

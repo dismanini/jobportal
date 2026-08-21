@@ -6,9 +6,9 @@ function CompanyProfile() {
   const [company, setCompany] = useState({
     name: "CompuPlus",
     industry: "Staffing & Recruitment",
-    email: "hr@yourcompany.com",
+    email: "hr@cp-intl.com",
     phone: "+91 98765 43210",
-    website: "www.yourcompany.com",
+    website: "https://cp-intl.com/",
     location: "Bhubaneswar, Odisha, India",
     employees: "50 - 100",
     founded: "2020",

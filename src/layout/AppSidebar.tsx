@@ -483,15 +483,15 @@ const AppSidebar: React.FC = () => {
                 className="dark:hidden"
                 src="/images/logo/compuplus-logo.png"
                 alt="Job Portal Logo"
-                width={150}
+                width={260}
                 height={40}
               />
 
               <img
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src="/images/logo/compuplus-logo.png"
                 alt="Job Portal Logo"
-                width={150}
+                width={260}
                 height={40}
               />
             </>

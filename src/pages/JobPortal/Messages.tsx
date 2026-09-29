@@ -7,7 +7,7 @@ const messagesData = [
     email: "rahul.sharma@gmail.com",
     avatar: "RS",
     message:
-      "Hello, I wanted to know more about the Frontend Developer position.",
+      "Hello, I wanted to know more about the FileNet Dev & Support Engineer position.",
     time: "10:30 AM",
     date: "Today",
     unread: true,
@@ -67,13 +67,13 @@ const conversationMessages = [
   {
     id: 1,
     sender: "candidate",
-    text: "Hello, I wanted to know more about the Frontend Developer position.",
+    text: "Hello, I wanted to know more about the FileNet Dev & Support Engineer position.",
     time: "10:25 AM",
   },
   {
     id: 2,
     sender: "company",
-    text: "Hello Rahul! Sure. The position is for a Frontend Developer with experience in React and Tailwind CSS.",
+    text: "Hello Rahul! Sure. The position is for a FileNet Dev & Support Engineer with experience in React and Tailwind CSS.",
     time: "10:27 AM",
   },
   {
@@ -422,7 +422,7 @@ function Messages() {
               </p>
 
               <p className="mt-1 text-sm font-semibold text-[#030303]">
-                Frontend Developer
+                FileNet Dev & Support Engineer
               </p>
 
             </div>

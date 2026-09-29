@@ -398,7 +398,7 @@ export default function EditJob() {
                   type="text"
                   value={formData.title}
                   onChange={handleChange}
-                  placeholder="e.g. Senior React Developer"
+                  placeholder="e.g. AI Engineer Lead"
                   className="w-full rounded-lg border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm text-gray-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                 />
 

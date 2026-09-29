@@ -21,7 +21,7 @@ export default function AuthLayout({
                 <img
                   width={231}
                   height={48}
-                  src="/images/logo/compuplus-logo.png"
+                  src="/images/logo/CompuPlus_Recruit_logo.png"
                   alt="Logo"
                 />
               </Link>

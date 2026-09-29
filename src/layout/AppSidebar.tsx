@@ -481,7 +481,7 @@ const AppSidebar: React.FC = () => {
             <>
               <img
                 className="dark:hidden"
-                src="/images/logo/compuplus-logo.png"
+                src="/images/logo/CompuPlus_Recruit_logo.png"
                 alt="Job Portal Logo"
                 width={260}
                 height={40}
@@ -489,7 +489,7 @@ const AppSidebar: React.FC = () => {
 
               <img
                 className="hidden dark:block"
-                src="/images/logo/compuplus-logo.png"
+                src="/images/logo/CompuPlus_Recruit_logo.png"
                 alt="Job Portal Logo"
                 width={260}
                 height={40}

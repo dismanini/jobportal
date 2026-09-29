@@ -112,7 +112,7 @@ function CompanyProfile() {
   "
 >
   <img
-    src="public/images/logo/compuplus-logo.png"
+    src="public/images/logo/CompuPlus_Recruit_logo.png"
     alt="Company Logo"
     className="h-full w-full object-contain p-2"
   />

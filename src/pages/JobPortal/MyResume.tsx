@@ -563,7 +563,7 @@ export default function MyResume() {
               name="headline"
               value={resume.headline}
               onChange={handleChange}
-              placeholder="Frontend Developer | React | TypeScript"
+              placeholder="FileNet Dev & Support Engineer | Splunk | Grafana"
               className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
 

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { Dropdown } from "../ui/dropdown/Dropdown";
-import { Link, useNavigate } from "react-router";
+// import { Link, useNavigate } from "react-router";
 
 interface User {
   id: number;
@@ -14,7 +14,7 @@ interface User {
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Get logged-in user from localStorage
   const storedUser = localStorage.getItem("user");
@@ -35,7 +35,7 @@ export default function UserDropdown() {
   function handleLogout() {
     localStorage.removeItem("user");
     setIsOpen(false);
-    navigate("/login");
+    // navigate("/login");
   }
 
   // Display role

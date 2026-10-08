@@ -1,0 +1,355 @@
+
+/* ================================
+   SUCCESS MESSAGE
+================================ */
+
+.success-message {
+  position: static !important;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+
+  padding: 12px 15px;
+  margin: 0 0 22px 0;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: none !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* ================================
+   ERROR MESSAGE
+================================ */
+
+.error-message {
+  position: static !important;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+
+  padding: 12px 15px;
+  margin: 0 0 22px 0;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: none !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+
+/* ================================
+   ADD JOB PAGE
+================================ */
+
+.add-job-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 40px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.add-job-header {
+  max-width: 1000px;
+  margin: 0 auto 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.add-job-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.add-job-header p {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: #6b7280;
+}
+
+/* Back Button */
+
+.back-btn {
+  border: none;
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 11px 18px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* ================================
+   FORM CARD
+================================ */
+
+.add-job-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 35px;
+  box-sizing: border-box;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* ================================
+   FORM GROUP
+================================ */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group label span {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+/* ================================
+   INPUT / SELECT / TEXTAREA
+================================ */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #111827;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input {
+  height: 44px;
+}
+
+.form-group select {
+  height: 44px;
+  cursor: pointer;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Focus */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ================================
+   SUCCESS MESSAGE
+================================ */
+
+.success-message {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  padding: 13px 15px;
+  border-radius: 7px;
+  margin-bottom: 22px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================================
+   ERROR MESSAGE
+================================ */
+
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  padding: 13px 15px;
+  border-radius: 7px;
+  margin-bottom: 22px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================================
+   FORM BUTTONS
+================================ */
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Cancel */
+
+.cancel-btn {
+  min-width: 110px;
+  height: 44px;
+  padding: 0 20px;
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* Submit */
+
+.submit-btn {
+  min-width: 130px;
+  height: 44px;
+  padding: 0 20px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+}
+
+/* Disabled */
+
+.submit-btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 768px) {
+  .add-job-page {
+    padding: 25px 15px;
+  }
+
+  .add-job-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-job-header h1 {
+    font-size: 26px;
+  }
+
+  .back-btn {
+    width: 100%;
+  }
+
+  .add-job-card {
+    padding: 25px 20px;
+  }
+
+  .form-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-job-page {
+    padding: 20px 10px;
+  }
+
+  .add-job-card {
+    padding: 20px 15px;
+    border-radius: 8px;
+  }
+
+  .add-job-header h1 {
+    font-size: 23px;
+  }
+
+  .add-job-header p {
+    font-size: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+}
+

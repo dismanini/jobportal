@@ -1,0 +1,265 @@
+.resume-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.resume-header {
+  margin-bottom: 25px;
+}
+
+.resume-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.resume-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.resume-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4f46e5;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.resume-message {
+  margin-bottom: 18px;
+  padding: 12px 15px;
+  background: #ecfdf5;
+  color: #047857;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.save-resume-btn {
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.save-resume-btn:hover {
+  background: #4338ca;
+}
+
+.save-resume-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.resume-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.resume-header {
+  margin-bottom: 25px;
+}
+
+.resume-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.resume-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.resume-card {
+  background: #ffffff;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.resume-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+/* Upload */
+
+.upload-info {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.file-upload-box {
+  border: 2px dashed #d1d5db;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  background: #f9fafb;
+  cursor:pointer;
+}
+
+.file-upload-box input[type="file"] {
+  font-size: 14px;
+  cursor:pointer;
+}
+
+.upload-status {
+  margin-top: 15px;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.uploaded-resume {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f0fdf4;
+}
+
+.uploaded-resume p {
+  margin-top: 0;
+  color: #166534;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.view-resume-btn,
+.download-resume-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.view-resume-btn {
+  background: #4f46e5;
+  color: white;
+}
+
+.view-resume-btn:hover {
+  background: #4338ca;
+}
+
+.download-resume-btn {
+  background: #059669;
+  color: white;
+}
+
+.download-resume-btn:hover {
+  background: #047857;
+}
+
+/* Form */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4f46e5;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.resume-message {
+  margin-bottom: 18px;
+  padding: 12px 15px;
+  background: #ecfdf5;
+  color: #047857;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.save-resume-btn {
+  border: none;
+  background: #4f46e5;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.save-resume-btn:hover {
+  background: #4338ca;
+}
+
+.save-resume-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

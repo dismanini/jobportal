@@ -1,0 +1,148 @@
+.admin-jobs-page {
+  padding: 10px;
+}
+
+.admin-jobs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.admin-jobs-header h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.admin-jobs-header p {
+  margin: 0;
+  color: #666;
+}
+
+.add-job-btn {
+  border: none;
+  background: #465fff;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.add-job-btn:hover {
+  opacity: 0.9;
+}
+
+.jobs-search-box {
+  background: white;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.jobs-search-box input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+.jobs-search-box input:focus {
+  border-color: #465fff;
+}
+
+.admin-jobs-table-wrapper {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.admin-jobs-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+.admin-jobs-table th,
+.admin-jobs-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-jobs-table th {
+  background: #f8f9fb;
+  font-size: 14px;
+}
+
+.admin-jobs-table td {
+  font-size: 14px;
+}
+
+.job-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.job-actions button {
+  border: none;
+  padding: 7px 11px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.view-btn {
+  background: #e8f1ff;
+  color: #2563eb;
+}
+
+.edit-btn {
+  background: #fff4d6;
+  color: #a16207;
+}
+
+.delete-btn {
+  background: #ffe4e4;
+  color: #dc2626;
+}
+
+.job-status {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 15px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.job-status.active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.job-status.inactive {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.jobs-loading,
+.no-jobs {
+  background: white;
+  padding: 40px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+  .admin-jobs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

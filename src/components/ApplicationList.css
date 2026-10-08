@@ -1,0 +1,170 @@
+.application-list-page {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.application-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.application-list-header h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #222;
+}
+
+.application-list-header p {
+  margin-top: 6px;
+  color: #777;
+}
+
+.back-job-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-job-btn:hover {
+  background: #1d4ed8;
+}
+
+.application-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.application-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1100px;
+}
+
+.application-table th {
+  background: #f1f5f9;
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.application-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  color: #555;
+}
+
+.application-table tr:hover {
+  background: #f8fafc;
+}
+
+.candidate-name {
+  font-weight: 600;
+  color: #222 !important;
+}
+
+.application-status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.application-status.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.application-status.shortlisted {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.application-status.rejected {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.application-status.hired {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.application-actions {
+  white-space: nowrap;
+}
+
+.application-view-btn,
+.application-delete-btn {
+  border: none;
+  padding: 7px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+.application-view-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.application-view-btn:hover {
+  background: #1d4ed8;
+}
+
+.application-delete-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.application-delete-btn:hover {
+  background: #b91c1c;
+}
+
+.application-loading {
+  background: white;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.application-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.no-applications {
+  background: white;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.no-applications h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.no-applications p {
+  color: #777;
+  margin-bottom: 20px;
+}

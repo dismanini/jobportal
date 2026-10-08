@@ -1,0 +1,105 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background: #f5f7fb;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 35px;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.register-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #222;
+}
+
+.register-header p {
+  margin-top: 8px;
+  color: #777;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+}
+
+.register-btn {
+  width: 100%;
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.register-btn:hover {
+  background: #1d4ed8;
+}
+
+.register-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-link p {
+  display: inline;
+  color: #777;
+  margin-right: 8px;
+}
+
+.login-link button {
+  border: none;
+  background: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 600;
+}

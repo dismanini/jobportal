@@ -14,7 +14,6 @@ import {
 } from "../icons";
 
 import { useSidebar } from "../context/SidebarContext";
-// import SidebarWidget from "./SidebarWidget";
 
 type NavItem = {
   name: string;
@@ -32,11 +31,11 @@ type NavItem = {
    JOB SEEKER MENU
 ========================================================= */
 
-const navItems: NavItem[] = [
+const jobSeekerItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    path: "/job-seeker",
+    path: "/job-seeker-dashboard",
   },
 
   {
@@ -45,17 +44,19 @@ const navItems: NavItem[] = [
     subItems: [
       {
         name: "Find Jobs",
-        path: "/find-jobs",
+        path: "/joblist",
       },
       {
         name: "Saved Jobs",
         path: "/saved-jobs",
       },
-      {
-        name: "Applied Jobs",
-        path: "/applied-jobs",
-      },
     ],
+  },
+
+  {
+    icon: <ListIcon />,
+    name: "My Applications",
+    path: "/applications",
   },
 
   {
@@ -78,24 +79,33 @@ const navItems: NavItem[] = [
 ];
 
 /* =========================================================
-   EMPLOYER MENU
+   ADMIN MENU
 ========================================================= */
 
-const employerItems: NavItem[] = [
+const adminItems: NavItem[] = [
   {
-    icon: <PageIcon />,
-    name: "Post a Job",
-    path: "/post-job",
+    icon: <GridIcon />,
+    name: "Dashboard",
+    path: "/admin-dashboard",
   },
 
   {
     icon: <BoxCubeIcon />,
-    name: "Manage Jobs",
-    path: "/manage-jobs",
+    name: "Jobs",
+    subItems: [
+      {
+        name: "Manage Jobs",
+        path: "/admin-jobs",
+      },
+      {
+        name: "Add Job",
+        path: "/addjob",
+      },
+    ],
   },
 
   {
-    icon: <UserCircleIcon />,
+    icon: <ListIcon />,
     name: "Applications",
     path: "/applications",
   },
@@ -107,21 +117,45 @@ const employerItems: NavItem[] = [
   },
 
   {
-    icon: <PageIcon />,
-    name: "Company Profile",
-    path: "/company-profile",
+    icon: <UserCircleIcon />,
+    name: "Users",
+    path: "/users",
   },
 ];
 
 /* =========================================================
-   ACCOUNT MENU
+   ADMIN ACCOUNT MENU
 ========================================================= */
 
-const othersItems: NavItem[] = [
+const adminAccountItems: NavItem[] = [
   {
     icon: <ListIcon />,
     name: "Messages",
     path: "/messages",
+  },
+
+  {
+    icon: <PlugInIcon />,
+    name: "Notifications",
+    path: "/notifications",
+  },
+
+  {
+    icon: <PageIcon />,
+    name: "Settings",
+    path: "/settings",
+  },
+];
+
+/* =========================================================
+   JOB SEEKER ACCOUNT MENU
+========================================================= */
+
+const jobSeekerAccountItems: NavItem[] = [
+  {
+    icon: <ListIcon />,
+    name: "Messages",
+    path: "/job-seeker-messages",
   },
 
   {
@@ -151,8 +185,59 @@ const AppSidebar: React.FC = () => {
 
   const location = useLocation();
 
+  /* =========================================================
+     GET LOGGED-IN USER
+  ========================================================= */
+
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error(
+          "Failed to read logged-in user:",
+          error
+        );
+
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, [location.pathname]);
+
+  /* =========================================================
+     CHECK ROLE
+  ========================================================= */
+
+  const isAdmin = user?.role === "admin";
+
+  const menuItems = isAdmin
+    ? adminItems
+    : jobSeekerItems;
+
+  /* =========================================================
+     ACCOUNT MENU BASED ON ROLE
+  ========================================================= */
+
+  const accountMenuItems = isAdmin
+    ? adminAccountItems
+    : jobSeekerAccountItems;
+
+  const menuTitle = isAdmin
+    ? "Admin"
+    : "Job Seeker";
+
+  /* =========================================================
+     SUBMENU STATE
+  ========================================================= */
+
   const [openSubmenu, setOpenSubmenu] = useState<{
-    type: "main" | "employer" | "others";
+    type: "main" | "account";
     index: number;
   } | null>(null);
 
@@ -169,7 +254,9 @@ const AppSidebar: React.FC = () => {
   ========================================================= */
 
   const isActive = useCallback(
-    (path: string) => location.pathname === path,
+    (path: string) => {
+      return location.pathname === path;
+    },
     [location.pathname]
   );
 
@@ -183,15 +270,11 @@ const AppSidebar: React.FC = () => {
     const menuGroups = [
       {
         type: "main" as const,
-        items: navItems,
+        items: menuItems,
       },
       {
-        type: "employer" as const,
-        items: employerItems,
-      },
-      {
-        type: "others" as const,
-        items: othersItems,
+        type: "account" as const,
+        items: accountMenuItems,
       },
     ];
 
@@ -215,7 +298,11 @@ const AppSidebar: React.FC = () => {
     if (!submenuMatched) {
       setOpenSubmenu(null);
     }
-  }, [location.pathname, isActive]);
+  }, [
+    location.pathname,
+    isActive,
+    isAdmin,
+  ]);
 
   /* =========================================================
      CALCULATE SUBMENU HEIGHT
@@ -241,7 +328,7 @@ const AppSidebar: React.FC = () => {
 
   const handleSubmenuToggle = (
     index: number,
-    menuType: "main" | "employer" | "others"
+    menuType: "main" | "account"
   ) => {
     setOpenSubmenu((prevOpenSubmenu) => {
       if (
@@ -265,12 +352,11 @@ const AppSidebar: React.FC = () => {
 
   const renderMenuItems = (
     items: NavItem[],
-    menuType: "main" | "employer" | "others"
+    menuType: "main" | "account"
   ) => (
     <ul className="flex flex-col gap-4">
       {items.map((nav, index) => (
         <li key={nav.name}>
-
           {/* =================================================
               MENU WITH SUB ITEMS
           ================================================= */}
@@ -402,7 +488,9 @@ const AppSidebar: React.FC = () => {
                           {subItem.new && (
                             <span
                               className={`ml-auto ${
-                                isActive(subItem.path)
+                                isActive(
+                                  subItem.path
+                                )
                                   ? "menu-dropdown-badge-active"
                                   : "menu-dropdown-badge-inactive"
                               } menu-dropdown-badge`}
@@ -414,7 +502,9 @@ const AppSidebar: React.FC = () => {
                           {subItem.pro && (
                             <span
                               className={`ml-auto ${
-                                isActive(subItem.path)
+                                isActive(
+                                  subItem.path
+                                )
                                   ? "menu-dropdown-badge-active"
                                   : "menu-dropdown-badge-inactive"
                               } menu-dropdown-badge`}
@@ -439,11 +529,13 @@ const AppSidebar: React.FC = () => {
   ========================================================= */
 
   return (
-    <aside   style={{
-    background: "linear-gradient(180deg, #FFF8F3 0%, #F7E8DC 100%)",
-    color: "#030303",
-  }}
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200
+    <aside
+      style={{
+        background:
+          "linear-gradient(180deg, #FFF8F3 0%, #F7E8DC 100%)",
+        color: "#030303",
+      }}
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200
         ${
           isExpanded || isMobileOpen
             ? "w-[290px]"
@@ -462,7 +554,6 @@ const AppSidebar: React.FC = () => {
       }
       onMouseLeave={() => setIsHovered(false)}
     >
-
       {/* =====================================================
           LOGO
       ===================================================== */}
@@ -474,7 +565,13 @@ const AppSidebar: React.FC = () => {
             : "justify-start"
         }`}
       >
-        <Link to="/job-seeker">
+        <Link
+          to={
+            isAdmin
+              ? "/admin-dashboard"
+              : "/job-seeker-dashboard"
+          }
+        >
           {isExpanded ||
           isHovered ||
           isMobileOpen ? (
@@ -511,13 +608,11 @@ const AppSidebar: React.FC = () => {
       ===================================================== */}
 
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-
         <nav className="mb-6">
-
           <div className="flex flex-col gap-6">
 
             {/* =================================================
-                JOB SEEKER
+                ROLE MENU
             ================================================= */}
 
             <div>
@@ -531,42 +626,15 @@ const AppSidebar: React.FC = () => {
                 {isExpanded ||
                 isHovered ||
                 isMobileOpen ? (
-                  "Job Seeker"
+                  menuTitle
                 ) : (
                   <HorizontaLDots className="size-6" />
                 )}
               </h2>
 
               {renderMenuItems(
-                navItems,
+                menuItems,
                 "main"
-              )}
-            </div>
-
-            {/* =================================================
-                EMPLOYER
-            ================================================= */}
-
-            <div>
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded ||
-                isHovered ||
-                isMobileOpen ? (
-                  "Employer"
-                ) : (
-                  <HorizontaLDots className="size-6" />
-                )}
-              </h2>
-
-              {renderMenuItems(
-                employerItems,
-                "employer"
               )}
             </div>
 
@@ -591,28 +659,19 @@ const AppSidebar: React.FC = () => {
                 )}
               </h2>
 
+              {/* IMPORTANT:
+                  Use accountMenuItems here
+              */}
+
               {renderMenuItems(
-                othersItems,
-                "others"
+                accountMenuItems,
+                "account"
               )}
             </div>
 
           </div>
-
         </nav>
-
-        {/* =====================================================
-            SIDEBAR WIDGET
-        ===================================================== */}
-
-        {/* {isExpanded ||
-        isHovered ||
-        isMobileOpen ? (
-          <SidebarWidget />
-        ) : null} */}
-
       </div>
-
     </aside>
   );
 };

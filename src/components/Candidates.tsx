@@ -25,7 +25,8 @@ const Candidates: React.FC = () => {
       setLoading(true);
 
       const response = await axios.get(
-        "http://localhost:5000/api/candidates"
+        // "http://localhost:5000/api/candidates"
+        "/api/candidates"
       );
 
       if (response.data.success) {

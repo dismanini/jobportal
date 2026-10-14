@@ -52,7 +52,8 @@ const ApplyJob: React.FC = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/applications",
+        // "http://localhost:5000/api/applications",
+        "/api/applications"
         formData,
         {
           headers: {

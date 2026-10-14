@@ -33,8 +33,10 @@ const JobSeekerDashboard: React.FC = () => {
 
       const [jobsResponse, applicationsResponse] =
         await Promise.all([
-          axios.get("http://localhost:5000/api/jobs"),
-          axios.get("http://localhost:5000/api/applications"),
+          // axios.get("http://localhost:5000/api/jobs"),
+          // axios.get("http://localhost:5000/api/applications"),
+          axios.get("/api/jobs"),
+axios.get("/api/applications"),
         ]);
 
       setJobs(jobsResponse.data.jobs || []);

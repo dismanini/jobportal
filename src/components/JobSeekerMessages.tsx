@@ -55,7 +55,8 @@ const JobSeekerMessages = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/messages/user/${userId}`
+        // `http://localhost:5000/api/messages/user/${userId}`
+        `/api/messages/user/${userId}`
       );
 
       if (response.data.success) {
@@ -112,7 +113,8 @@ const JobSeekerMessages = () => {
       setSending(true);
 
       const response = await axios.post(
-        "http://localhost:5000/api/messages",
+        // "http://localhost:5000/api/messages",
+        "/api/messages"
         {
           sender_id: userId,
           receiver_id: ADMIN_ID,

@@ -46,7 +46,8 @@ const MyProfile: React.FC = () => {
       const user = JSON.parse(savedUser);
 
       const response = await axios.get(
-        `http://localhost:5000/api/profile/${user.id}`
+        // `http://localhost:5000/api/profile/${user.id}`
+        `/api/profile/${user.id}`
       );
 
       if (response.data.success) {
@@ -109,7 +110,8 @@ const MyProfile: React.FC = () => {
       setSaving(true);
 
       const response = await axios.put(
-        `http://localhost:5000/api/profile/${user.id}`,
+        // `http://localhost:5000/api/profile/${user.id}`,
+        `/api/profile/${user.id}`
         formData
       );
 

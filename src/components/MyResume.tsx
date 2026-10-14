@@ -42,7 +42,8 @@ const MyResume = () => {
   const fetchResume = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/resume/${user.id}`
+        // `http://localhost:5000/api/resume/${user.id}`
+        `/api/resume/${user.id}`
       );
 
       if (response.data.success && response.data.resume) {
@@ -90,7 +91,8 @@ const MyResume = () => {
       setMessage("");
 
       const response = await axios.put(
-        `http://localhost:5000/api/resume/${user.id}`,
+        // `http://localhost:5000/api/resume/${user.id}`,
+        `/api/resume/${user.id}`
         {
           resume_name: resume.resume_name,
           professional_title: resume.professional_title,
@@ -158,7 +160,8 @@ const MyResume = () => {
       formData.append("resume", file);
 
       const response = await axios.post(
-        `http://localhost:5000/api/resume/upload/${user.id}`,
+        // `http://localhost:5000/api/resume/upload/${user.id}`,
+        `/api/resume/upload/${user.id}`
         formData
       );
 

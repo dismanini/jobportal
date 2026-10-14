@@ -54,9 +54,11 @@ const AdminDashboard = () => {
     try {
       setLoading(true);
 
-      const response = await axios.get(
-        "http://localhost:5000/api/admin/dashboard"
-      );
+      // const response = await axios.get(
+      //   "http://localhost:5000/api/admin/dashboard"
+      // );
+
+       const response = await axios.get("/api/admin/dashboard");
 
       if (response.data.success) {
         setStatistics(response.data.statistics);

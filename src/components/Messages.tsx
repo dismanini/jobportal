@@ -34,7 +34,7 @@ const Messages: React.FC = () => {
       const user = JSON.parse(storedUser);
 
       const response = await axios.get(
-        // `http://localhost:5000/api/messages/admin/${user.id}`
+       
         `/api/messages/admin/${user.id}`
       );
 
@@ -58,7 +58,7 @@ const Messages: React.FC = () => {
     if (message.status === "unread") {
       try {
         await axios.put(
-          // `http://localhost:5000/api/messages/${message.id}/read`
+         
           `/api/messages/${message.id}/read`
         );
 
@@ -89,7 +89,7 @@ const Messages: React.FC = () => {
 
     try {
       await axios.delete(
-        // `http://localhost:5000/api/messages/${id}`
+        
         `/api/messages/${id}`
       );
 

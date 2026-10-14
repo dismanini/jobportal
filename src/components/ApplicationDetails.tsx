@@ -33,9 +33,7 @@ const ApplicationDetails: React.FC = () => {
       setLoading(true);
       setError("");
 
-      // const response = await axios.get(
-      //   `http://localhost:5000/api/applications/${id}`
-      // );
+     
 
       const response = await axios.get(
         `/api/applications/${id}`
@@ -73,7 +71,7 @@ const ApplicationDetails: React.FC = () => {
 
     try {
       await axios.put(
-        // `http://localhost:5000/api/applications/${application.id}/status`,
+       
          `/api/applications/${application.id}/status`,
         {
           status: newStatus,
@@ -111,7 +109,7 @@ const ApplicationDetails: React.FC = () => {
 
     try {
       await axios.delete(
-        // `http://localhost:5000/api/applications/${application.id}`
+        
          `/api/applications/${application.id}`
       );
 

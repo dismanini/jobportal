@@ -30,7 +30,7 @@ const ApplicationList: React.FC = () => {
       setError("");
 
       const response = await axios.get(
-        // "http://localhost:5000/api/applications"
+        
         "/api/applications"
       );
 
@@ -60,7 +60,7 @@ const ApplicationList: React.FC = () => {
 
     try {
       await axios.delete(
-        // `http://localhost:5000/api/applications/${id}`
+       
         `/api/applications/${id}`
       );
 

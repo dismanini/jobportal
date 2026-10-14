@@ -30,9 +30,7 @@ const AdminJobs = () => {
     try {
       setLoading(true);
 
-      // const response = await axios.get(
-      //   "http://localhost:5000/api/jobs"
-      // );
+     
 
  const response = await axios.get("/api/jobs");
       if (response.data.success) {
@@ -55,9 +53,7 @@ const AdminJobs = () => {
     }
 
     try {
-      // const response = await axios.delete(
-      //   `http://localhost:5000/api/jobs/${id}`
-      // );
+     
 
        const response = await axios.delete(`/api/jobs/${id}`);
 

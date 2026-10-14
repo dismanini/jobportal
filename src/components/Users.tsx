@@ -19,7 +19,7 @@ const Users: React.FC = () => {
       setLoading(true);
 
       const response = await axios.get(
-        // "http://localhost:5000/api/users"
+        
         "/api/users"
       );
 

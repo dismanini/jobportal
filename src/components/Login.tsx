@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -12,20 +11,18 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setError("");
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      // Use the deployed API through the Vercel rewrite
+      const response = await axios.post("/api/auth/login", {
+        email,
+        password,
+      });
 
       if (response.data.success) {
         const user = response.data.user;
@@ -39,20 +36,23 @@ const Login = () => {
         } else if (user.role === "admin") {
           navigate("/admin-dashboard");
         } else {
+          localStorage.removeItem("user");
           setError("Invalid user role.");
         }
       } else {
-        setError(
-          response.data.message || "Login failed."
-        );
+        setError(response.data.message || "Login failed.");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Login error:", error);
 
-      setError(
-        error.response?.data?.message ||
-          "Login failed. Please try again."
-      );
+      if (axios.isAxiosError(error)) {
+        setError(
+          error.response?.data?.message ||
+            "Login failed. Please check your credentials or try again later."
+        );
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -67,17 +67,13 @@ const Login = () => {
           Login to your Job Portal account
         </p>
 
-        {error && (
-          <div className="login-error">
-            {error}
-          </div>
-        )}
+        {error && <div className="login-error">{error}</div>}
 
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label>Email</label>
-
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               type="email"
               placeholder="Enter your email"
               value={email}
@@ -87,9 +83,9 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <label>Password</label>
-
+            <label htmlFor="password">Password</label>
             <input
+              id="password"
               type="password"
               placeholder="Enter your password"
               value={password}
@@ -119,4 +115,3 @@ const Login = () => {
 };
 
 export default Login;
-

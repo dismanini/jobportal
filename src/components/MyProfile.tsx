@@ -111,7 +111,7 @@ const MyProfile: React.FC = () => {
 
       const response = await axios.put(
        
-        `/api/profile/${user.id}`
+        `/api/profile/${user.id}`,
         formData
       );
 

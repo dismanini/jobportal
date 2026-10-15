@@ -43,7 +43,7 @@ const MyResume = () => {
     try {
       const response = await axios.get(
         
-        `/api/resume/${user.id}`
+        `/api/resume/${user.id}`,
       );
 
       if (response.data.success && response.data.resume) {
@@ -92,7 +92,7 @@ const MyResume = () => {
 
       const response = await axios.put(
         
-        `/api/resume/${user.id}`
+        `/api/resume/${user.id}`,
         {
           resume_name: resume.resume_name,
           professional_title: resume.professional_title,
@@ -161,7 +161,7 @@ const MyResume = () => {
 
       const response = await axios.post(
        
-        `/api/resume/upload/${user.id}`
+        `/api/resume/upload/${user.id}`,
         formData
       );
 

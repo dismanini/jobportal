@@ -173,7 +173,7 @@ if (response.data.success) {
   // Cancel / Back
   const handleCancel = () => {
 
-    window.location.href = "/jobs";
+    window.location.href = "/joblist";
 
   };
 

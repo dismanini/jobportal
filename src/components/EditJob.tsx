@@ -166,7 +166,7 @@ const EditJob = () => {
 
   // Cancel
   const handleCancel = () => {
-    navigate("/jobs");
+    navigate("/joblist");
   };
 
   // Loading

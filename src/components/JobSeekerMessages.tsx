@@ -114,7 +114,7 @@ const JobSeekerMessages = () => {
 
       const response = await axios.post(
         
-        "/api/messages"
+        "/api/messages",
         {
           sender_id: userId,
           receiver_id: ADMIN_ID,

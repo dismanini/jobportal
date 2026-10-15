@@ -53,7 +53,7 @@ const ApplyJob: React.FC = () => {
 
       const response = await axios.post(
        
-        "/api/applications"
+        "/api/applications",
         formData,
         {
           headers: {

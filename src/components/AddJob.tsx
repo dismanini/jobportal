@@ -9,6 +9,7 @@ interface JobForm {
   location: string;
   salary: string;
   job_type: string;
+   work_mode: string;
   experience: string;
   description: string;
   skills: string;
@@ -24,6 +25,7 @@ const AddJob: React.FC = () => {
     location: "",
     salary: "",
     job_type: "Full Time",
+     work_mode: "Online",
     experience: "",
     description: "",
     skills: "",
@@ -143,6 +145,7 @@ if (response.data.success) {
         location: "",
         salary: "",
         job_type: "Full Time",
+        work_mode: "Online",
         experience: "",
         description: "",
         skills: "",
@@ -323,26 +326,40 @@ if (response.data.success) {
                 Full Time
               </option>
 
-              <option value="Part Time">
+              {/* <option value="Part Time">
                 Part Time
-              </option>
+              </option> */}
 
               <option value="Contract">
                 Contract
               </option>
 
-              <option value="Internship">
+              {/* <option value="Internship">
                 Internship
               </option>
 
               <option value="Remote">
                 Remote
-              </option>
+              </option> */}
 
             </select>
 
           </div>
+{/* Work Mode */}
+<div className="form-group">
+  <label htmlFor="work_mode">Work Mode</label>
 
+  <select
+    id="work_mode"
+    name="work_mode"
+    value={formData.work_mode}
+    onChange={handleChange}
+  >
+    <option value="Online">Online</option>
+    <option value="Hybrid">Hybrid</option>
+    <option value="Remote">Remote</option>
+  </select>
+</div>
 
           {/* Experience */}
           <div className="form-group">

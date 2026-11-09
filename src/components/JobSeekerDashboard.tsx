@@ -95,7 +95,7 @@ axios.get("/api/applications"),
 
         <button
           className="browse-jobs-btn"
-          onClick={() => navigate("/job-list")}
+          onClick={() => navigate("/joblist")}
         >
           Browse Jobs
         </button>
